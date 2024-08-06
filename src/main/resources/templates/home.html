@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;    
+        }
+        .container{
+            margin: auto;
+            background-color: antiquewhite;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" >
+        <!-- data-th-text used to insert value which is in model set in controller. we also can use th:text instead of data-th-text. and so on..... -->
+        <h1 data-th-text=${page}></h1>
+        <h2 >Name : <span data-th-text=${name}></span></h2>
+        <h2 >Github : <span th:text=${github}></span></h2>
+        <a th:href=${github}>click here</a>
+    </div>
+</body>
+</html>
