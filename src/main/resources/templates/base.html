@@ -1,0 +1,17 @@
+<div  style="background-color: rgb(127, 140, 255);" th:fragment="header">
+    <h1>this is header fragment</h1>
+    <span>Home</span>
+    <span>About</span>
+    <span>contact</span>
+    <span>Gallary</span>
+</div>
+<div style="background-color: rgb(255, 127, 131);" th:fragment="main(content)">
+    <h1>this  is main fragment</h1>
+    <div th:replace="${content}"></div>
+</div>
+<div style="background-color: aquamarine;" th:fragment="footer(x,y)">
+    <h1>This is footer fragment</h1>
+    <h1>First Name : <span th:text="${x}"></span></h1>
+    <h1>Last name : <span th:text="${y}"></span></h1>
+
+</div>

@@ -21,4 +21,13 @@ public class PageController {
         //home is a template(html file) which is in resources/templates/
         return "home";
     }
+    @RequestMapping("/about")
+    public String about(Model model){
+        model.addAttribute("name","Bhupendra Verma");
+        model.addAttribute("role", "Full Stack Developer");
+        model.addAttribute("email", "bhupendra@gmail.com");
+        model.addAttribute("linkedinGithub", "imbhuvie");
+
+        return "about";
+    }
 }
