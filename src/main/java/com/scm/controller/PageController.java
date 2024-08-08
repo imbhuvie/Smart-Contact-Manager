@@ -30,4 +30,9 @@ public class PageController {
 
         return "about";
     }
+
+    @RequestMapping("/service")
+    public String service(){
+        return "service";
+    }
 }

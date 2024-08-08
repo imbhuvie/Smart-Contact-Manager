@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About page</title>
-</head>
-<body>
-    <div>
-        <h1 >Name : <span th:text=${name}></span></h1>
-        <h1 >Role : <span th:text=${role}></span></h1>
-        <h1 >LinkedIn Id : <span th:text=${linkedinGithub}></span></h1>
-        <h1 >Github Id : <span th:text=${linkedinGithub}></span></h1>
+<html lang="en" th:replace="~{base :: parent(~{:: #about},~{::title})}">
+  <head>
+    <title>About</title>
+  </head>
+  <body>
+    <div id="about">
+        <h2>About page</h2>
+        <h3>Bhupendra Verma</h3>
+        <h4>Fullstack Develpoer</h4>
+        <h5>bhuvie@gmail.com</h5>
     </div>
-</body>
+  </body>
 </html>

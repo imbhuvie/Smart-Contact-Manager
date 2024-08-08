@@ -1,17 +1,55 @@
-<div  style="background-color: rgb(127, 140, 255);" th:fragment="header">
-    <h1>this is header fragment</h1>
-    <span>Home</span>
-    <span>About</span>
-    <span>contact</span>
-    <span>Gallary</span>
-</div>
-<div style="background-color: rgb(255, 127, 131);" th:fragment="main(content)">
-    <h1>this  is main fragment</h1>
-    <div th:replace="${content}"></div>
-</div>
-<div style="background-color: aquamarine;" th:fragment="footer(x,y)">
-    <h1>This is footer fragment</h1>
-    <h1>First Name : <span th:text="${x}"></span></h1>
-    <h1>Last name : <span th:text="${y}"></span></h1>
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:fragment="parent(content,title)"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:replace="${title}">Smart Contact Manager</title>
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header started -->
+    <div class="space-x-5">
+      <span>
+        <a data-th-href="@{/home}">Home</a>
+      </span>
+      <span>
+        <a data-th-href="@{/about}">About</a>
+      </span>
+      <span>
+        <a data-th-href="@{/service}">Services</a>
+      </span>
+    </div>
+    <!-- Header end here -->
 
-</div>
+    <!-- Main Content start -->
+    <div class="w-screen h-1/2 bg-slate-500 p-8 border-2">
+      <div class="bg-slate-500 px-9 border-2" th:replace="${content}"></div>
+      <h2>Base page parent Fragment</h2>
+    </div>
+
+    <!-- Main Content end here -->
+    <div class="w-screen h-16 bg-slate-500 border-2">
+      <h2 class="bg-cyan-800">All rights are reserve to bhupendra Verma</h2>
+    </div>
+  </body>
+</html>
