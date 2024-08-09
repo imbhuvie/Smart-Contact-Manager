@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html
+class="dark"
   lang="en"
   th:fragment="parent(content,title)"
   xmlns:th="http://www.thymeleaf.org"
 >
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="/img/icon48.png" sizes="50x30" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:replace="${title}">Smart Contact Manager</title>
     <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
@@ -13,31 +15,11 @@
       href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
       rel="stylesheet"
     />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      html,
-      body {
-        height: 100vh;
-        width: 100vw;
-        box-sizing: border-box;
-      }
-    </style>
+   
   </head>
   <body>
     <!-- Header started -->
-    <div class="space-x-5">
-      <span>
-        <a data-th-href="@{/home}">Home</a>
-      </span>
-      <span>
-        <a data-th-href="@{/about}">About</a>
-      </span>
-      <span>
-        <a data-th-href="@{/service}">Services</a>
-      </span>
+    <div th:replace="~{navbar :: navbar}">
     </div>
     <!-- Header end here -->
 
@@ -48,8 +30,9 @@
     </div>
 
     <!-- Main Content end here -->
+     <!-- This is footer -->
     <div class="w-screen h-16 bg-slate-500 border-2">
-      <h2 class="bg-cyan-800">All rights are reserve to bhupendra Verma</h2>
+      <h2 class="bg-cyan-800">All rights are reserve to bhupendra Verma and this is Footer</h2>
     </div>
   </body>
 </html>
