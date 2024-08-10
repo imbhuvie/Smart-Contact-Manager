@@ -28,13 +28,15 @@ function changeTheme() {
     const oldTheme = currentTheme;
     if (currentTheme == "light") {
       currentTheme = "dark";
-      theme_button.style.color = "white";
+      //   theme_button.style.color = "white";
+      //   setThemeType(currentTheme);
+      //   htmlTag.classList.remove(oldTheme);
+      //   htmlTag.classList.add(currentTheme);
     } else {
       currentTheme = "light";
-      theme_button.style.color = "black";
+      //   theme_button.style.color = "black";
     }
     setThemeType(currentTheme);
-
     htmlTag.classList.remove(oldTheme);
     htmlTag.classList.add(currentTheme);
   });
