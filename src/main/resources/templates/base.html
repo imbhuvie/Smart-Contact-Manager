@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html
-class="dark"
   lang="en"
   th:fragment="parent(content,title)"
   xmlns:th="http://www.thymeleaf.org"
 >
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/img/icon48.png" sizes="50x30" type="image/png">
+    <link rel="icon" href="/img/icon48.png" sizes="50x30" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:replace="${title}">Smart Contact Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
     <link
       href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
       rel="stylesheet"
     />
-   
   </head>
-  <body>
+  <body class="dark:bg-gray-900">
     <!-- Header started -->
-    <div th:replace="~{navbar :: navbar}">
-    </div>
+    <div th:replace="~{navbar :: navbar}"></div>
     <!-- Header end here -->
 
     <!-- Main Content start -->
@@ -30,9 +34,14 @@ class="dark"
     </div>
 
     <!-- Main Content end here -->
-     <!-- This is footer -->
+    <!-- This is footer -->
     <div class="w-screen h-16 bg-slate-500 border-2">
-      <h2 class="bg-cyan-800">All rights are reserve to bhupendra Verma and this is Footer</h2>
+      <h2 class="bg-cyan-800">
+        All rights are reserve to bhupendra Verma and this is Footer
+      </h2>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+    <script src="/js/script.js"></script>
   </body>
 </html>
