@@ -41,3 +41,4 @@ function changeTheme() {
     htmlTag.classList.add(currentTheme);
   });
 }
+
