@@ -8,9 +8,9 @@
   <body>
     <div id="signup" class="w-screen flex justify-center items-center">
       <div class="flex justify-center items-center">
-
-        <form action=""
-          class="w-96 block mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700"
+<!-- Form Started -->
+        <form action="do-register" method="POST" data-th-object="${userForm}"
+          class="w-96 block mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
         >
           <h5
             class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white"
@@ -29,6 +29,7 @@
           >
           <input
             type="text"
+            data-th-field="*{name}"
             id="name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter your name"
@@ -41,6 +42,8 @@
           >
           <input
             type="email"
+            data-th-field="*{email}"
+
             id="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -54,6 +57,8 @@
           <input
             type="text"
             id="contact"
+            data-th-field="*{contact}"
+
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
             placeholder="Enter your contact"
@@ -65,18 +70,22 @@
           >
           <input
             type="password"
+            data-th-field="*{password}"
+
             id="password"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
           <label
-            for="description"
+            for="about"
             class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
-            >Description</label
+            >About</label
           >
           <textarea
-            name="description"
-            id="description"
+            name="about"
+            data-th-field="*{about}"
+
+            id="about"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           ></textarea>
@@ -95,7 +104,7 @@
             </button>
           </div>
         </form>
-
+<!-- Form end -->
 
       </div>
     </div>
