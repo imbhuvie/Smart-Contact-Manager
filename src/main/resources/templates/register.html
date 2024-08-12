@@ -1,11 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::body},~{::title})}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" th:replace="~{base :: parent(~{:: #signup},~{::title})}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up Here</title>
-</head>
-<body>
-    <h2>This is Signup Page</h2>
-</body>
+  </head>
+  <body>
+    <div id="signup" class="w-screen flex justify-center items-center">
+      <div class="flex justify-center items-center">
+
+        <form action=""
+          class="w-96 block mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700"
+        >
+          <h5
+            class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white"
+          >
+            Signup Here
+          </h5>
+          <p
+            class="text-sm font-normal text-gray-500 dark:text-gray-400 text-justify"
+          >
+            Manage your contacts Smartly with SCM...
+          </p>
+          <label
+            for="name"
+            class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter your name"
+            required
+          />
+          <label
+            for="email"
+            class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+            placeholder="Enter your email"
+          />
+          <label
+            for="contact"
+            class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Contact Number</label
+          >
+          <input
+            type="text"
+            id="contact"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+            placeholder="Enter your contact"
+          />
+          <label
+            for="password"
+            class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <label
+            for="description"
+            class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
+            >Description</label
+          >
+          <textarea
+            name="description"
+            id="description"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          ></textarea>
+          <div class="flex justify-center items-center gap-4">
+            <button
+              type="submit"
+              class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Signup
+            </button>
+            <button
+              type="reset"
+              class="mt-3 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </body>
 </html>

@@ -22,24 +22,18 @@
       rel="stylesheet"
     />
   </head>
-  <body class="dark:bg-gray-900">
+  <body class="dark:bg-gray-800">
     <!-- Header started -->
     <div th:replace="~{navbar :: navbar}"></div>
     <!-- Header end here -->
 
     <!-- Main Content start -->
-    <div class="w-screen h-1/2 bg-slate-500 p-8 border-2">
-      <div class="bg-slate-500 px-9 border-2" th:replace="${content}"></div>
-      <h2>Base page parent Fragment</h2>
-    </div>
+      <div th:replace="${content}"></div>
 
     <!-- Main Content end here -->
     <!-- This is footer -->
-    <div class="w-screen h-16 bg-slate-500 border-2">
-      <h2 class="bg-cyan-800">
-        All rights are reserve to bhupendra Verma and this is Footer
-      </h2>
-    </div>
+    <!-- Your footer here -->
+  
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
     <script src="/js/script.js"></script>
