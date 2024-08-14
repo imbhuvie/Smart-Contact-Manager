@@ -31,7 +31,7 @@ public class Contact {
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "contact",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<MobileNumber> phoneNumber = new ArrayList<>();
 
     @Column(length = 5000)

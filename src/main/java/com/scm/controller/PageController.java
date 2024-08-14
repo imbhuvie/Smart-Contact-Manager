@@ -61,8 +61,6 @@ public class PageController {
     @RequestMapping("/register")
     public String register(Model model) {
         UserForm userForm = new UserForm();
-        userForm.setName("Bhupendra");
-        userForm.setContact("8953738383");
         model.addAttribute("userForm", userForm);
         return "register";
     }
@@ -73,14 +71,24 @@ public class PageController {
         System.out.println(userForm);
         // 2.Validate Form data :TODO
         // 3.Save to Database
-        User user = User.builder()
-        .name(userForm.getName())
-        .email(userForm.getEmail())
-        // Here we user phonenumber because in the User Model we use phoneNumber instead of contact 
-        .phoneNumber(userForm.getContact())
-        .password(userForm.getPassword())
-        .about(userForm.getAbout())
-        .build();
+        // When we use builder() the default values are not initialized.
+        // User user = User.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // // Here we user phonenumber because in the User Model we use phoneNumber instead of contact 
+        // .phoneNumber(userForm.getContact())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .build();
+
+        // Show we use new keyword to create object and then initialize them.
+        User user=new User();
+        user.setName(userForm.getName());
+        user.setEmail(userForm.getEmail());
+        user.setPhoneNumber(userForm.getContact());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+
         userService.saveUser(user);
         // 4.Message:for successfull registration
         // redirect login page

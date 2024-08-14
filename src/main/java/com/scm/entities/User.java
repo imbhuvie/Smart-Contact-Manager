@@ -6,10 +6,12 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -28,6 +31,7 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
     @Column(length = 6500)
     private String about;
@@ -41,7 +45,7 @@ public class User {
     private boolean phoneVerified =false;
 
     // SELF,GOOGLE,FACEBOOK,GITHUB,LINKEDIN
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private Providers provider =Providers.SELF;
     private String providerUserId;
 
