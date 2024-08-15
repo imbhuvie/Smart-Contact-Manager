@@ -13,6 +13,8 @@ import com.scm.form.UserForm;
 import com.scm.service.UserService;
 import com.scm.service.implimentation.UserServiceImplimentation;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -66,7 +68,7 @@ public class PageController {
     }
 
     @PostMapping("/do-register")
-    public String registerUseString(@ModelAttribute UserForm userForm) {
+    public String registerUseString(@ModelAttribute UserForm userForm,HttpSession session) {
         // 1.Fetch data
         System.out.println(userForm);
         // 2.Validate Form data :TODO
@@ -91,8 +93,9 @@ public class PageController {
 
         userService.saveUser(user);
         // 4.Message:for successfull registration
+        session.setAttribute("message", "Registration successfull");
         // redirect login page
-
+        
         // it will redirect you to /register
         return "redirect:/register";
     }

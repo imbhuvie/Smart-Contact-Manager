@@ -8,8 +8,11 @@
   <body>
     <div id="signup" class="w-screen flex justify-center items-center">
       <div class="flex justify-center items-center">
-<!-- Form Started -->
-        <form action="do-register" method="POST" data-th-object="${userForm}"
+        <!-- Form Started -->
+        <form
+          action="do-register"
+          method="POST"
+          data-th-object="${userForm}"
           class="w-96 block mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
         >
           <h5
@@ -43,7 +46,6 @@
           <input
             type="email"
             data-th-field="*{email}"
-
             id="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -58,7 +60,6 @@
             type="text"
             id="contact"
             data-th-field="*{contact}"
-
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
             placeholder="Enter your contact"
@@ -71,7 +72,6 @@
           <input
             type="password"
             data-th-field="*{password}"
-
             id="password"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -84,7 +84,6 @@
           <textarea
             name="about"
             data-th-field="*{about}"
-
             id="about"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -103,9 +102,9 @@
               Reset
             </button>
           </div>
+          <div data-th-replace="message ::alert"></div>
         </form>
-<!-- Form end -->
-
+        <!-- Form end -->
       </div>
     </div>
   </body>
