@@ -6,14 +6,15 @@
     <title>Sign up Here</title>
   </head>
   <body>
-    <div id="signup" class="w-screen flex justify-center items-center">
-      <div class="flex justify-center items-center">
+    <div id="signup" class="w-screen flex flex-col justify-center items-center">
+      <div data-th-replace="message ::alert"></div>
+      <div class="mt-2 flex justify-center items-center">
         <!-- Form Started -->
         <form
           action="do-register"
           method="POST"
           data-th-object="${userForm}"
-          class="w-96 block mt-5 p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
+          class="w-96 block p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
         >
           <h5
             class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white"
@@ -102,7 +103,6 @@
               Reset
             </button>
           </div>
-          <div data-th-replace="message ::alert"></div>
         </form>
         <!-- Form end -->
       </div>

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.scm.entities.User;
 import com.scm.form.UserForm;
+import com.scm.helper.Message;
+import com.scm.helper.MessageType;
 import com.scm.service.UserService;
 import com.scm.service.implimentation.UserServiceImplimentation;
 
@@ -93,7 +95,11 @@ public class PageController {
 
         userService.saveUser(user);
         // 4.Message:for successfull registration
-        session.setAttribute("message", "Registration successfull");
+        Message message=Message.builder()
+        .content("Successfull")
+        .type(MessageType.blue)
+        .build();
+        session.setAttribute("message", message); 
         // redirect login page
         
         // it will redirect you to /register
