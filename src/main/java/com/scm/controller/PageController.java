@@ -3,6 +3,7 @@ package com.scm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.scm.service.UserService;
 import com.scm.service.implimentation.UserServiceImplimentation;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,10 +72,13 @@ public class PageController {
     }
 
     @PostMapping("/do-register")
-    public String registerUseString(@ModelAttribute UserForm userForm,HttpSession session) {
+    public String registerUseString(@Valid @ModelAttribute UserForm userForm,BindingResult bindingResult, HttpSession session) { //@Valid check validation and BindingResult get error message if has any.
         // 1.Fetch data
         System.out.println(userForm);
-        // 2.Validate Form data :TODO
+        // 2.Validate Form data : here we check if error happened then return to register page.
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
         // 3.Save to Database
         // When we use builder() the default values are not initialized.
         // User user = User.builder()

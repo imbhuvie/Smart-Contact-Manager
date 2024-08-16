@@ -14,7 +14,8 @@
           action="do-register"
           method="POST"
           data-th-object="${userForm}"
-          class="w-96 block p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
+          class="sm:w-72 w-96 block p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"
+          novalidate
         >
           <h5
             class="mb-2 text-2xl font-bold tracking-tight text-blue-700 dark:text-white"
@@ -39,6 +40,11 @@
             placeholder="Enter your name"
             required
           />
+          <p class="text-red-600 px-1 text-xs"
+          data-th-if="${#fields.hasErrors('name')}"
+          data-th-errors="*{name}"
+          ></p>
+
           <label
             for="email"
             class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -52,6 +58,10 @@
             required
             placeholder="Enter your email"
           />
+          <p class="text-red-600 px-1 text-xs"
+          data-th-if="${#fields.hasErrors('email')}"
+          data-th-errors="*{email}"
+          ></p>
           <label
             for="contact"
             class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -65,6 +75,10 @@
             required
             placeholder="Enter your contact"
           />
+          <p class="text-red-600 px-1 text-xs"
+          data-th-if="${#fields.hasErrors('contact')}"
+          data-th-errors="*{contact}"
+          ></p>
           <label
             for="password"
             class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
@@ -77,6 +91,10 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
+          <p class="text-red-600 px-1 text-xs"
+          data-th-if="${#fields.hasErrors('password')}"
+          data-th-errors="*{password}"
+          ></p>
           <label
             for="about"
             class="block mt-2 mb-1 text-sm font-medium text-gray-900 dark:text-white"
