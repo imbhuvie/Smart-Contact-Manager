@@ -32,6 +32,7 @@ public class SecurityConfig {
         // }
 
 
+        
     // InMemoryUserDetailsManager :here we store user details static not DB used.
     // @Bean
     // public UserDetailsService userDetailsService() {
