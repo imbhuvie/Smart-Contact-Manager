@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
@@ -19,6 +20,9 @@ public class UserServiceImplimentation implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    // creating object of PasswordEncoder
+    @Autowired
+    PasswordEncoder passwordEncoder;
     // To save user data in DB
     @Override
     public User saveUser(User user) {
@@ -26,6 +30,8 @@ public class UserServiceImplimentation implements UserService {
         String userId=UUID.randomUUID().toString();
         // add userId to the user
         user.setUserId(userId);
+        // Encode the password 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         // save user to DB.
         return userRepository.save(user);
     }

@@ -1,7 +1,11 @@
 package com.scm.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity(name = "user")
 @Table(name = "users")
-public class User {
+public class User implements UserDetails{
 
     @Id
     private String userId;
@@ -53,4 +57,18 @@ public class User {
     //  fetch = FetchType.LAZY , if we get user and need not contact, then don't run query for contacts.
     @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY,orphanRemoval = true)
     List<Contact> contact=new ArrayList<>();
+
+
+    // Methods overrides for UserDetails implementation
+ 
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
 }
