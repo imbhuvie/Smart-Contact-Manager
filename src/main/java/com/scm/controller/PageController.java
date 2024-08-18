@@ -73,12 +73,14 @@ public class PageController {
 
     @PostMapping("/do-register")
     public String registerUseString(@Valid @ModelAttribute UserForm userForm,BindingResult bindingResult, HttpSession session) { //@Valid check validation and BindingResult get error message if has any.
+        System.out.println("----do-register endpoint------");
         // 1.Fetch data
         System.out.println(userForm);
         // 2.Validate Form data : here we check if error happened then return to register page.
-        if(bindingResult.hasErrors()){
-            return "register";
-        }
+        // if(bindingResult.hasErrors()){
+        //     System.out.println("----------------Error----------------");
+        //     return "register";
+        // }
         // 3.Save to Database
         // When we use builder() the default values are not initialized.
         // User user = User.builder()

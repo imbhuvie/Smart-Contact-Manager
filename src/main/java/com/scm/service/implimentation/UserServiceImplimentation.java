@@ -1,5 +1,6 @@
 package com.scm.service.implimentation;
 
+import java.lang.System.Logger;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
+import com.scm.helper.AppConstant;
 import com.scm.helper.ResourceNotFoundException;
 import com.scm.repository.UserRepository;
 import com.scm.service.UserService;
@@ -22,16 +24,21 @@ public class UserServiceImplimentation implements UserService {
 
     // creating object of PasswordEncoder
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
     // To save user data in DB
     @Override
     public User saveUser(User user) {
+
         // generating userId
         String userId=UUID.randomUUID().toString();
         // add userId to the user
         user.setUserId(userId);
         // Encode the password 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // set the user role
+        user.setRoleList(List.of(AppConstant.ROLE_USER));
+        // logger.Info(user.getProvider().toString());
         // save user to DB.
         return userRepository.save(user);
     }

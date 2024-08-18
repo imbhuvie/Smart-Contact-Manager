@@ -21,18 +21,18 @@ import com.scm.service.implimentation.SecurityCustomUserDetailsService;
 public class SecurityConfig {
     // Here we use filterchain to unblock the login and signup form. becoz without this we can't access any endpoint even for login and signup.
 
-        // @Bean
-        // public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
-        //     httpSecurity.authorizeHttpRequests(authorize->{
-        //         authorize.requestMatchers("/home").
-        //         permitAll();
-        //     });
-        //     return httpSecurity.build();
-        // }
+            httpSecurity.authorizeHttpRequests(authorize->{
+                authorize.requestMatchers("/*").
+                permitAll();
+            }); 
+            return httpSecurity.build();
+        }
 
 
-        
+
     // InMemoryUserDetailsManager :here we store user details static not DB used.
     // @Bean
     // public UserDetailsService userDetailsService() {
@@ -60,7 +60,9 @@ public class SecurityConfig {
     }
 
     // To get object of password encoder
+    @Bean
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 }
