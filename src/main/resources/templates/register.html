@@ -7,11 +7,11 @@
   </head>
   <body>
     <div id="signup" class="w-screen flex flex-col justify-center items-center">
-      <!-- <div data-th-replace="~{message :: alert}"></div> -->
+       <div data-th-replace="~{message :: alert}"></div>
       <div class="mt-2 flex justify-center items-center">
         <!-- Form Started -->
         <form
-          action="/do-register"
+                data-th-action="@{'/do-register'}"
           method="POST"
           data-th-object="${userForm}"
           class="sm:w-72 w-96 block p-6 bg-white border border-gray-200 rounded-lg shadow-lg shadow-red-600 dark:bg-gray-900 dark:border-gray-700 dark:shadow-lg dark:shadow-red-100"

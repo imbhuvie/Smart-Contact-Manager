@@ -14,19 +14,24 @@ import com.scm.entities.Contact;
 public class UserController {
 
 
+//    Mapping for user/ url.
+    @RequestMapping("/")
+    public String index(){
+        return "redirect:/user/dashboard";
+    }
+
     // Endpoints for user
     // dashboard endpoint
     @RequestMapping("/dashboard")
     // Map to /user/dashboard endpoint and return user dashboard page.
     public String userDashboard(){
-
         return "user/dashboard";
     }
-    // // add contact endpoint
-    // @RequestMapping(value="/addcontact", method=RequestMethod.GET)
-    // public String requestMethodName() {
-    //     return "user/addcontact";
-    // }
+     // add contact endpoint
+     @RequestMapping(value="/contact", method=RequestMethod.GET)
+     public String requestMethodName() {
+         return "user/contact";
+     }
     
     // update contact endpoint
     // delete contact endpoint

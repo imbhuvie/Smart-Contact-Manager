@@ -23,11 +23,13 @@ public class SecurityConfig {
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-
-            httpSecurity.authorizeHttpRequests(authorize->{
-                authorize.requestMatchers("/*").
-                permitAll();
-            }); 
+// secure and unsecure url are defined here.
+            httpSecurity.authorizeHttpRequests(authorize->{authorize
+                        .requestMatchers("/user/**").authenticated()
+                        .anyRequest().permitAll();
+            });
+//            when unauthorised url hit then it give default login page
+            httpSecurity.formLogin(Customizer.withDefaults());
             return httpSecurity.build();
         }
 
@@ -47,6 +49,7 @@ public class SecurityConfig {
     
     @Autowired
     SecurityCustomUserDetailsService userDetailsService;
+    
     // Now we get user details from database and login
     @Bean
     public AuthenticationProvider authenticationProvider() {

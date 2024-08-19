@@ -28,6 +28,11 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/")
+public String index(){
+        return "redirect:/home";
+    }
+
     @RequestMapping("/home")
     public String home(Model model) {
         // model use to send data to template html pages
@@ -68,6 +73,7 @@ public class PageController {
     public String register(Model model) {
         UserForm userForm = new UserForm();
         model.addAttribute("userForm", userForm);
+        System.out.println("----------registering user---------");
         return "register";
     }
 
@@ -77,10 +83,10 @@ public class PageController {
         // 1.Fetch data
         System.out.println(userForm);
         // 2.Validate Form data : here we check if error happened then return to register page.
-        // if(bindingResult.hasErrors()){
-        //     System.out.println("----------------Error----------------");
-        //     return "register";
-        // }
+         if(bindingResult.hasErrors()){
+             System.out.println("----------------Error----------------");
+             return "register";
+         }
         // 3.Save to Database
         // When we use builder() the default values are not initialized.
         // User user = User.builder()
@@ -104,7 +110,7 @@ public class PageController {
         // 4.Message:for successfull registration
         Message message=Message.builder()
         .content("Successfull")
-        .type(MessageType.blue)
+        .type(MessageType.green)
         .build();
         session.setAttribute("message", message); 
         // redirect login page
@@ -112,5 +118,12 @@ public class PageController {
         // it will redirect you to /register
         return "redirect:/register";
     }
+
+
+    @RequestMapping("/user")
+    public String userIndex(){
+        return "redirect:/user/dashboard";
+    }
+
 
 }

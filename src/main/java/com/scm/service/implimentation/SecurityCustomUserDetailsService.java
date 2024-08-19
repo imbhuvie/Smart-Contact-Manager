@@ -11,13 +11,10 @@ import com.scm.repository.UserRepository;
 public class SecurityCustomUserDetailsService implements UserDetailsService{
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Load our username, password.
-        return  userRepository.findById(username).orElseThrow(()->new UsernameNotFoundException("Could not find User.")); 
-
-
+        return  userRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Could not find User.")); 
     }
-
 }
