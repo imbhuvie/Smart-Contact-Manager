@@ -1,5 +1,7 @@
 package com.scm.config;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +9,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,8 +19,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.scm.service.implimentation.SecurityCustomUserDetailsService;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 public class SecurityConfig {
@@ -29,7 +40,50 @@ public class SecurityConfig {
                         .anyRequest().permitAll();
             });
 //            when unauthorised url hit then it give default login page
-            httpSecurity.formLogin(Customizer.withDefaults());
+            httpSecurity.formLogin(formLogin->{
+                // your login page.
+                formLogin.loginPage("/login")
+                // authentication page where data from login page accepted.
+                .loginProcessingUrl("/authenticate")
+                // after login the page on which it redirects
+                .successForwardUrl("/user/dashboard")
+                // if error happen then page to redirect.
+                .failureForwardUrl("/login?error=true")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                // // what to do when authentication failed
+                // .failureHandler(new AuthenticationFailureHandler() {
+
+                //     @Override
+                //     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+                //             AuthenticationException exception) throws IOException, ServletException {
+                //         // TODO Auto-generated method stub
+                //         // your code here
+                //         throw new UnsupportedOperationException("Unimplemented method 'onAuthenticationFailure'");
+                //     }
+                    
+                // })
+                // // what to do when the authentication successful
+                // .successHandler(new AuthenticationSuccessHandler() {
+
+                //     @Override
+                //     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                //             Authentication authentication) throws IOException, ServletException {
+                //         // TODO Auto-generated method stub
+                //         // your code here.
+                //         throw new UnsupportedOperationException("Unimplemented method 'onAuthenticationSuccess'");
+                //     }
+                    
+                // })
+                
+                ;
+                
+            });
+            httpSecurity.csrf(AbstractHttpConfigurer::disable);
+                httpSecurity.logout(logoutForm->{
+                    logoutForm.logoutUrl("/logout");
+                    logoutForm.logoutSuccessUrl("/login?logout=true");
+                });
             return httpSecurity.build();
         }
 
