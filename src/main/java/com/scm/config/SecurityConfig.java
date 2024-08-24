@@ -79,7 +79,10 @@ public class SecurityConfig {
                 ;
                 
             });
+
+            // To disable CSRF token for logout beacause it check for POST request and then check CSRF token which we are not using so for testing we disable it.
             httpSecurity.csrf(AbstractHttpConfigurer::disable);
+            // To Logout user 
                 httpSecurity.logout(logoutForm->{
                     logoutForm.logoutUrl("/logout");
                     logoutForm.logoutSuccessUrl("/login?logout=true");

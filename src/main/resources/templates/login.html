@@ -8,6 +8,12 @@
   <body>
     <div id="login" class="w-screen flex flex-col justify-center items-center mt-8 ">
       <!-- <div data-th-replace="~{message :: alert}"></div> -->
+       <div data-th-if="${param.error}">
+        <p class="text-red-700 font-semibold">Invalid user or password.</p>
+       </div>
+       <div data-th-if="${param.logout}">
+        <p class="text-green-500 font-bold">Logout successfull.</p>
+       </div>
       <div class="w-1/2 mt-2 flex justify-center items-center ">
         <!-- Form Started -->
         <form
