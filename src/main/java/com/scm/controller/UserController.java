@@ -29,9 +29,14 @@ public class UserController {
     }
      // add contact endpoint
      @RequestMapping(value="/contact", method=RequestMethod.GET)
-     public String requestMethodName() {
+     public String userContact() {
          return "user/contact";
      }
+      // add contact endpoint
+      @RequestMapping(value="/profile", method=RequestMethod.GET)
+      public String userProfile() {
+          return "user/profile";
+      }
     
     // update contact endpoint
     // delete contact endpoint

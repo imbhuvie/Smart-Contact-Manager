@@ -30,67 +30,85 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 public class SecurityConfig {
-    // Here we use filterchain to unblock the login and signup form. becoz without this we can't access any endpoint even for login and signup.
+    // Here we use filterchain to unblock the login and signup form. becoz without
+    // this we can't access any endpoint even for login and signup.
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-// secure and unsecure url are defined here.
-            httpSecurity.authorizeHttpRequests(authorize->{authorize
-                        .requestMatchers("/user/**").authenticated()
-                        .anyRequest().permitAll();
-            });
-//            when unauthorised url hit then it give default login page
-            httpSecurity.formLogin(formLogin->{
-                // your login page.
-                formLogin.loginPage("/login")
-                // authentication page where data from login page accepted.
-                .loginProcessingUrl("/authenticate")
-                // after login the page on which it redirects
-                .successForwardUrl("/user/dashboard")
-                // if error happen then page to redirect.
-                .failureForwardUrl("/login?error=true")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                // // what to do when authentication failed
-                // .failureHandler(new AuthenticationFailureHandler() {
+    // getting object of OAuthAuthenticationSuccessHandler for successfull authentication using OAuth2(google,github,.....)
+    @Autowired
+    private OAuthAuthenticationSuccessHandler handler;
 
-                //     @Override
-                //     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                //             AuthenticationException exception) throws IOException, ServletException {
-                //         // TODO Auto-generated method stub
-                //         // your code here
-                //         throw new UnsupportedOperationException("Unimplemented method 'onAuthenticationFailure'");
-                //     }
-                    
-                // })
-                // // what to do when the authentication successful
-                // .successHandler(new AuthenticationSuccessHandler() {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-                //     @Override
-                //     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                //             Authentication authentication) throws IOException, ServletException {
-                //         // TODO Auto-generated method stub
-                //         // your code here.
-                //         throw new UnsupportedOperationException("Unimplemented method 'onAuthenticationSuccess'");
-                //     }
-                    
-                // })
-                
-                ;
-                
-            });
+        /*  secure and unsecure url are defined here, When unauthorised url hit then it
+         give default login page. */
+        httpSecurity.authorizeHttpRequests(authorize -> {
+            authorize.requestMatchers("/user/**")
+                    .authenticated()
+                    .anyRequest().permitAll();
+        });
 
-            // To disable CSRF token for logout beacause it check for POST request and then check CSRF token which we are not using so for testing we disable it.
-            httpSecurity.csrf(AbstractHttpConfigurer::disable);
-            // To Logout user 
-                httpSecurity.logout(logoutForm->{
-                    logoutForm.logoutUrl("/logout");
-                    logoutForm.logoutSuccessUrl("/login?logout=true");
-                });
-            return httpSecurity.build();
-        }
+        httpSecurity.formLogin(formLogin -> {
+            // your login page.
+            formLogin.loginPage("/login")
+                    // authentication page where data from login page accepted.
+                    .loginProcessingUrl("/authenticate")
+                    // after login the page on which it redirects
+                    .successForwardUrl("/user/dashboard")
+                    // if error happen then page to redirect.
+                    .failureForwardUrl("/login?error=true")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+            // // what to do when authentication failed
+            // .failureHandler(new AuthenticationFailureHandler() {
+
+            // @Override
+            // public void onAuthenticationFailure(HttpServletRequest request,
+            // HttpServletResponse response,
+            // AuthenticationException exception) throws IOException, ServletException {
+            // // TODO Auto-generated method stub
+            // // your code here
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'onAuthenticationFailure'");
+            // }
+
+            // })
+            // // what to do when the authentication successful
+            // .successHandler(new AuthenticationSuccessHandler() {
+
+            // @Override
+            // public void onAuthenticationSuccess(HttpServletRequest request,
+            // HttpServletResponse response,
+            // Authentication authentication) throws IOException, ServletException {
+            // // TODO Auto-generated method stub
+            // // your code here.
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'onAuthenticationSuccess'");
+            // }
+
+            // })
+
+            ;
+
+        });
+
+        // Google authentication configuration
+        httpSecurity.oauth2Login(oauth->{
+            oauth.loginPage("/login");
+            oauth.successHandler(handler);
+        });
 
 
+        // To disable CSRF token for logout beacause it check for POST request and then
+        // check CSRF token which we are not using so, for testing we disable it.
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        // To Logout user
+        httpSecurity.logout(logoutForm -> {
+            logoutForm.logoutUrl("/logout");
+            logoutForm.logoutSuccessUrl("/login?logout=true");
+        });
+        return httpSecurity.build();
+    }
 
     // InMemoryUserDetailsManager :here we store user details static not DB used.
     // @Bean
@@ -101,12 +119,9 @@ public class SecurityConfig {
     // return new InMemoryUserDetailsManager(user);
     // }
 
-
-    
-    
     @Autowired
     SecurityCustomUserDetailsService userDetailsService;
-    
+
     // Now we get user details from database and login
     @Bean
     public AuthenticationProvider authenticationProvider() {
