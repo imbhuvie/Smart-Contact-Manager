@@ -28,24 +28,21 @@ public class PageController {
     @Autowired
     private UserService userService;
 
+    // Home page redirection when user does not provide any endpoints and not logged in
     @RequestMapping("/")
 public String index(){
         return "redirect:/home";
     }
-
+// Homepage or
     @RequestMapping("/home")
-    public String home(Model model) {
-        // model use to send data to template html pages
-        model.addAttribute("page", "Home Page");
-        model.addAttribute("name", "Bhupendra verma");
-        model.addAttribute("github", "https://github.com/imbhuvie");
-
+    public String home() {
         // home is a template(html file) which is in resources/templates/
         return "home";
     }
 
     @RequestMapping("/about")
     public String about(Model model) {
+        // Model model use to send data to template html pages
         model.addAttribute("name", "Bhupendra Verma");
         model.addAttribute("role", "Full Stack Developer");
         model.addAttribute("email", "bhupendra@gmail.com");
@@ -64,23 +61,28 @@ public String index(){
         return "contact";
     }
 
+    // Use to login user it diplayed the login form and other login options.
     @RequestMapping("/login")
     public String login() {
         return "login";
     }
 
+    // Use to Register user it diplayed the Registration form and other registration options.
     @RequestMapping("/register")
     public String register(Model model) {
+        // We have a class UserForm which has fields that we need for registration
         UserForm userForm = new UserForm();
+        // we are sending a empty object of this class which will displayed in the form that is nothing.
         model.addAttribute("userForm", userForm);
-        System.out.println("----------registering user---------");
+        // But we also get the values in this object when user make changes in the form because they both are same.
         return "register";
     }
 
+    // When user fill registration form and submit, it is submitted to this url and it manage registration process.
     @PostMapping("/do-register")
     public String registerUseString(@Valid @ModelAttribute UserForm userForm,BindingResult bindingResult, HttpSession session) { //@Valid check validation and BindingResult get error message if has any.
-        System.out.println("----do-register endpoint------");
-        // 1.Fetch data
+        // System.out.println("----do-register endpoint------");
+        // 1.Fetch data : We get data in userForm object
         System.out.println(userForm);
         // 2.Validate Form data : here we check if error happened then return to register page.
          if(bindingResult.hasErrors()){
@@ -88,7 +90,6 @@ public String index(){
              return "register";
          }
         // 3.Save to Database
-        // When we use builder() the default values are not initialized.
         // User user = User.builder()
         // .name(userForm.getName())
         // .email(userForm.getEmail())
@@ -97,7 +98,8 @@ public String index(){
         // .password(userForm.getPassword())
         // .about(userForm.getAbout())
         // .build();
-
+        
+        // When we use builder() the default values(given in Model) are not initialized.
         // Show we use new keyword to create object and then initialize them.
         User user=new User();
         user.setName(userForm.getName());
@@ -107,9 +109,11 @@ public String index(){
         user.setAbout(userForm.getAbout());
 
         userService.saveUser(user);
-        // 4.Message:for successfull registration
+        // 4.Message:for successfull registration in frontend where we using Thymeleaf and Tailwind.
+        // we have created a class which define msg,type
         Message message=Message.builder()
         .content("Successfull")
+// in which color message should print.(green,red,blue)
         .type(MessageType.green)
         .build();
         session.setAttribute("message", message); 

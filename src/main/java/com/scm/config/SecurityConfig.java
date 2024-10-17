@@ -40,8 +40,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        /*  secure and unsecure url are defined here, When unauthorised url hit then it
-         give default login page. */
+        /*  secure and unsecure url are defined here, When unauthorised url hit then it redirects to the default login page. */
         httpSecurity.authorizeHttpRequests(authorize -> {
             authorize.requestMatchers("/user/**")
                     .authenticated()

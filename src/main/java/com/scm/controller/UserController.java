@@ -13,26 +13,26 @@ import com.scm.entities.Contact;
 @RequestMapping("/user")
 public class UserController {
 
-
-//    Mapping for user/ url.
+    // Endpoints for user
+    
+//    Mapping for user/ url. when user will be logged in it will redirect to this page
     @RequestMapping("/")
     public String index(){
         return "redirect:/user/dashboard";
     }
 
-    // Endpoints for user
     // dashboard endpoint
     @RequestMapping("/dashboard")
     // Map to /user/dashboard endpoint and return user dashboard page.
     public String userDashboard(){
         return "user/dashboard";
     }
-     // add contact endpoint
+     // contact endpoint
      @RequestMapping(value="/contact", method=RequestMethod.GET)
      public String userContact() {
          return "user/contact";
      }
-      // add contact endpoint
+      // profile endpoint
       @RequestMapping(value="/profile", method=RequestMethod.GET)
       public String userProfile() {
           return "user/profile";
