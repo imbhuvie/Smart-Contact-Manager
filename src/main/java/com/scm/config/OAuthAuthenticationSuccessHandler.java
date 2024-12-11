@@ -85,7 +85,7 @@ public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
         String userId = UUID.randomUUID().toString();
         // add userId to the user
         user.setUserId(userId);
-        // Encode the password
+        // Encode the password (for default password)
         user.setPassword(passwordEncoder.encode("password"));
 
         // set the user role

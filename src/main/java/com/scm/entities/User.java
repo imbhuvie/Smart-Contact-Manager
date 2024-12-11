@@ -19,6 +19,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,6 +38,7 @@ public class User implements UserDetails{
     @Column(name = "username", nullable = false)
     private String name;
     @Column(nullable = false, unique = true)
+    @Email(message = "Email already registered")
     private String email;
     @Column(nullable = false)
     private String password;

@@ -47,7 +47,6 @@ public String index(){
         model.addAttribute("role", "Full Stack Developer");
         model.addAttribute("email", "bhupendra@gmail.com");
         model.addAttribute("linkedinGithub", "imbhuvie");
-
         return "about";
     }
 
